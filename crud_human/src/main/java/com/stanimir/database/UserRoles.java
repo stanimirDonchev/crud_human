@@ -30,7 +30,7 @@ public class UserRoles {
     private Long id;
     
     @NotNull
-    @ManyToOne(targetEntity = User.class)
+    @Column(name = "username")
     private String username;
     
     @NotNull

@@ -5,6 +5,10 @@
  */
 package com.stanimir.security;
 
+import com.stanimir.database.User;
+import com.stanimir.database.UserRepository;
+import com.stanimir.database.UserRoles;
+import com.stanimir.database.UserRolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,6 +23,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    
+    @Autowired
+    private UserRepository userRepository;
+    
+    @Autowired
+    private UserRolesRepository userRolesRepository;
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -40,9 +50,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");
+       
+        for(User user : userRepository.findAll())
+        {
+            for(UserRoles userRole : userRolesRepository.findByUsername(user.getUsername()))
+            {
+                auth
+                    .inMemoryAuthentication()
+                        .withUser(user.getUsername()).password(user.getPassword()).roles(userRole.getRole());
+            }
+        }
+//        auth
+//            .inMemoryAuthentication()
+//                .withUser("user").password("password").roles("USER");
     }
     
 }

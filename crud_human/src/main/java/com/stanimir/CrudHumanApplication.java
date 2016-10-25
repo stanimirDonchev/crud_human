@@ -11,29 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.web.csrf.CsrfToken;
 
 @SpringBootApplication
-public class CrudHumanApplication implements CommandLineRunner{
-    
-    @Autowired
-    private UserRepository userRepository;
-    
-    @Autowired
-    private UserRolesRepository userRolesRepository;
-    
+public class CrudHumanApplication{
 
     public static void main(String[] args) {
             SpringApplication.run(CrudHumanApplication.class, args);
-    }
-
-    @Override
-    public void run(String... strings) throws Exception {
-        User user = new User();
-        user.setUsername("pesho");
-        user.setPassword("pesho");
-        userRepository.save(user);
-        
-        /*UserRoles userRole = new UserRoles();
-        userRole.setUserId(1L);
-        userRole.setRole("ADMIN");
-        userRolesRepository.save(userRole);*/
     }
 }

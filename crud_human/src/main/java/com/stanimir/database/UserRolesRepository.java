@@ -5,12 +5,17 @@
  */
 package com.stanimir.database;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author stanimir
  */
+@Repository
 public interface UserRolesRepository extends JpaRepository<UserRoles, Long>{
+    
+    List<UserRoles> findByUsername(String username);
     
 }
