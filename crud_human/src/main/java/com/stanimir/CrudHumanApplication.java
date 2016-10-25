@@ -31,9 +31,9 @@ public class CrudHumanApplication implements CommandLineRunner{
         user.setPassword("pesho");
         userRepository.save(user);
         
-        UserRoles userRole = new UserRoles();
+        /*UserRoles userRole = new UserRoles();
         userRole.setUserId(1L);
         userRole.setRole("ADMIN");
-        userRolesRepository.save(userRole);
+        userRolesRepository.save(userRole);*/
     }
 }

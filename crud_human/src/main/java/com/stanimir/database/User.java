@@ -21,19 +21,15 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Data
 @Entity
-@Table(name = "User")
+@Table(name = "UserDetails")
 public class User {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
-    //@NotNull
     @NotEmpty
     @Column(name = "username")
     private String username;
     
-    //@NotNull
+    @NotNull
     @NotEmpty
     @Column(name = "password")
     private String password;

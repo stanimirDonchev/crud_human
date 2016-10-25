@@ -28,6 +28,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
+            .authorizeRequests()
+                .antMatchers("/console/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
                 .formLogin().permitAll()
                 .and()
                 .logout().permitAll();

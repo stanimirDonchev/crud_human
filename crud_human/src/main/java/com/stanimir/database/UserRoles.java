@@ -29,12 +29,11 @@ public class UserRoles {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    //@NotNull
+    @NotNull
     @ManyToOne(targetEntity = User.class)
-    @JoinTable(name="User")
-    private Long userId;
+    private String username;
     
-    //@NotNull
+    @NotNull
     @Column(name = "role")
     private String role;
 }
