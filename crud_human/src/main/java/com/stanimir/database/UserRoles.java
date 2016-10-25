@@ -10,10 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -21,20 +22,19 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Data
 @Entity
-@Table(name = "User")
-public class User {
+@Table(name = "User_Roles")
+public class UserRoles {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
     //@NotNull
-    @NotEmpty
-    @Column(name = "username")
-    private String username;
+    @ManyToOne(targetEntity = User.class)
+    @JoinTable(name="User")
+    private Long userId;
     
     //@NotNull
-    @NotEmpty
-    @Column(name = "password")
-    private String password;
+    @Column(name = "role")
+    private String role;
 }
