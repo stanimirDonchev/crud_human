@@ -8,9 +8,11 @@ package com.stanimir.controller;
 import com.stanimir.model.Human;
 import com.stanimir.service.HumanService;
 import java.util.Collection;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +35,7 @@ public class HumanController {
     public Collection<Human> getAllHumans()
     {
         return humanService.getAllHumans();
+        
     }
     
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
