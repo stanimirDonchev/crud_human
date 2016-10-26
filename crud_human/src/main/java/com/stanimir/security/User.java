@@ -3,18 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.stanimir.database;
+package com.stanimir.security;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -22,18 +21,16 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "User_Roles")
-public class UserRoles {
+@Table(name = "UserDetails")
+public class User {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
-    @NotNull
+    @NotEmpty
     @Column(name = "username")
     private String username;
     
     @NotNull
-    @Column(name = "role")
-    private String role;
+    @NotEmpty
+    @Column(name = "password")
+    private String password;
 }

@@ -5,10 +5,6 @@
  */
 package com.stanimir.security;
 
-import com.stanimir.database.User;
-import com.stanimir.database.UserRepository;
-import com.stanimir.database.UserRoles;
-import com.stanimir.database.UserRolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

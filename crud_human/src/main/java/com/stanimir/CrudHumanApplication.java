@@ -1,9 +1,9 @@
 package com.stanimir;
 
-import com.stanimir.database.User;
-import com.stanimir.database.UserRepository;
-import com.stanimir.database.UserRoles;
-import com.stanimir.database.UserRolesRepository;
+import com.stanimir.security.User;
+import com.stanimir.security.UserRepository;
+import com.stanimir.security.UserRoles;
+import com.stanimir.security.UserRolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
