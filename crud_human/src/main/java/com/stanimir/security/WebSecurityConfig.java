@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  *
@@ -19,36 +20,34 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    
+
     @Autowired
     private UserRepository userRepository;
-    
+
     @Autowired
     private UserRolesRepository userRolesRepository;
-    
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
-            .authorizeRequests()
+                .csrf().disable()
+                .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()
                 .and()
                 .logout().permitAll();
-        //TODO: enable csrf 
+        //TODO: enable csrf
     }
-    
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-       
-        for(User user : userRepository.findAll())
-        {
-            for(UserRoles userRole : userRolesRepository.findByUsername(user.getUsername()))
-            {
+
+        for (User user : userRepository.findAll()) {
+            for (UserRoles userRole : userRolesRepository.findByUsername(user.getUsername())) {
                 auth
-                    .inMemoryAuthentication()
+                        .inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
                         .withUser(user.getUsername()).password(user.getPassword()).roles(userRole.getRole());
             }
         }
@@ -56,5 +55,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //            .inMemoryAuthentication()
 //                .withUser("user").password("password").roles("USER");
     }
-    
+
 }
