@@ -10,6 +10,9 @@ import com.stanimir.service.HumanService;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +38,12 @@ public class HumanController {
 
     }
 
+    @RequestMapping(value = "/page/{number}/entries/{entryNumber}", method = RequestMethod.GET)
+    public Page<Human> getAllHumansPaged(@PathVariable("number") Integer pageNumber, @PathVariable("entryNumber") Integer entryNumber) {
+        return humanService.getAllHumansPaged(new PageRequest(pageNumber, entryNumber));
+
+    }
+
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void insertHuman(@RequestBody Human human) {
         humanService.insertHuman(human);
@@ -54,20 +63,40 @@ public class HumanController {
     public Human updateHuman(@RequestBody Human human) {
         return humanService.updateHuman(human);
     }
+//
+//    @RequestMapping(value = "/sortByLastName", method = RequestMethod.GET)
+//    public Collection<Human> sortByLastName() {
+//        return humanService.sortByLastName();
+//    }
+//
+//    @RequestMapping(value = "/sortByDateOfBirth", method = RequestMethod.GET)
+//    public Collection<Human> sortByDateOfBirth() {
+//        return humanService.sortByDateOfBirth();
+//    }
 
-    @RequestMapping(value = "/sortByLastName", method = RequestMethod.GET)
-    public Collection<Human> sortByLastName() {
-        return humanService.sortByLastName();
-    }
-
-    @RequestMapping(value = "/sortByDateOfBirth", method = RequestMethod.GET)
-    public Collection<Human> sortByDateOfBirth() {
-        return humanService.sortByDateOfBirth();
+    @RequestMapping(value = "/sortHumansBy/{param}", method = RequestMethod.GET)
+    public Collection<Human> sortHumans(@PathVariable("param") String param) {
+        return humanService.sortHumansBy(new Sort(param));
     }
 
     //TODO: fix
     @RequestMapping(value = "/find/{value}", method = RequestMethod.GET)
     public Collection<Human> find(@PathVariable String value) {
         return humanService.findHumansBy(value);
+    }
+
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public Long getHumansCount() {
+        return humanService.getHumanCount();
+    }
+
+    @RequestMapping(value = "/countByLastname/{lastName}", method = RequestMethod.GET)
+    public Long getHumansCountBy(@PathVariable("lastName") String lastName) {
+        return humanService.getHumanCountByLastName(lastName);
+    }
+
+    @RequestMapping(value = "/findByLastNameOrderByFirstNameAsc/{lastName}", method = RequestMethod.GET)
+    public Collection<Human> getHumansByLastNameOrderByFirstNameAsc(@PathVariable("lastName") String lastName) {
+        return humanService.getHumansByLastNameOrderByFisrtNameAsc(lastName);
     }
 }
