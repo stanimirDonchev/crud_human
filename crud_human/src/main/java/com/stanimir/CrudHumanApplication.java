@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CrudHumanApplication {//implements CommandLineRunner {
+public class CrudHumanApplication {// implements CommandLineRunner {
 
 //    @Autowired
 //    private UserRepository userRepository;
@@ -34,19 +34,19 @@ public class CrudHumanApplication {//implements CommandLineRunner {
 //
 //        UserRoles userRoleGosho = new UserRoles();
 //        userRoleGosho.setUsername("gosho");
-//        userRoleGosho.setRole("USER");
+//        userRoleGosho.setRole("ADMIN");
 //        userRolesRepository.save(userRoleGosho);
 //    }
 //    @Override
 //    public void run(String... args) throws Exception {
 //        User pesho = new User();
-//        pesho.setUsername("misho");
-//        pesho.setPassword(new BCryptPasswordEncoder().encode("misho"));
+//        pesho.setUsername("gesho");
+//        pesho.setPassword(new BCryptPasswordEncoder().encode("gesho"));
 //        userRepository.save(pesho);
 //
 //        UserRoles userRolePesho = new UserRoles();
-//        userRolePesho.setUsername("misho");
-//        userRolePesho.setRole("ADMIN");
+//        userRolePesho.setUsername("gesho");
+//        userRolePesho.setRole("MODERATOR");
 //        userRolesRepository.save(userRolePesho);
 //    }
 }
