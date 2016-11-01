@@ -99,4 +99,10 @@ public class HumanController {
     public Collection<Human> getHumansByLastNameOrderByFirstNameAsc(@PathVariable("lastName") String lastName) {
         return humanService.getHumansByLastNameOrderByFisrtNameAsc(lastName);
     }
+
+    @RequestMapping(value = "/search/{value}", method = RequestMethod.GET)
+    public Collection<Human> search(@PathVariable String value) {
+        return humanService.search(value);
+    }
+
 }

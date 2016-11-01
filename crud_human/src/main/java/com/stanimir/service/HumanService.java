@@ -28,7 +28,7 @@ public interface HumanService {
     void removeHumanById(Long id);
 
 //    Collection<Human> sortByDateOfBirth();
-//
+//fields by single value
 //    Collection<Human> sortByLastName();
     Human updateHuman(Human human);
 
@@ -41,4 +41,6 @@ public interface HumanService {
     Long getHumanCountByLastName(String lastName);
 
     Collection<Human> getHumansByLastNameOrderByFisrtNameAsc(String lastName);
+
+    Collection<Human> search(String value);
 }

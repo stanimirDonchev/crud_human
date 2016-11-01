@@ -44,4 +44,6 @@ public interface HumanJpaRepository extends JpaRepository<Human, Long> {
     Long countByLastNameIgnoreCase(String lastName);
 
     List<Human> findByLastNameIgnoreCaseOrderByFirstNameAsc(String lastName);
+
+    List<Human> findByIdContainingOrFirstNameContainingOrLastNameContainingOrPhoneNumberContainingOrEmailContainingOrDateOfBirthContainingAllIgnoreCase(String id, String firstName, String lastName, String phoneNumber, String email, String date);
 }

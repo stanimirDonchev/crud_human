@@ -100,4 +100,9 @@ public class HumanServiceImpl implements HumanService {
     public Collection<Human> getHumansByLastNameOrderByFisrtNameAsc(String lastName) {
         return humanRepository.findByLastNameIgnoreCaseOrderByFirstNameAsc(lastName);
     }
+
+    @Override
+    public Collection<Human> search(String value) {
+        return humanRepository.findByIdContainingOrFirstNameContainingOrLastNameContainingOrPhoneNumberContainingOrEmailContainingOrDateOfBirthContainingAllIgnoreCase(value, value, value, value, value, value);
+    }
 }
